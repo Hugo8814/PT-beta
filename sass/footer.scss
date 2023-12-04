@@ -1,0 +1,39 @@
+.footer {
+  padding: 10rem 3rem;
+
+  &__nav {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5rem;
+  }
+  &__item {
+    margin-right: 4rem;
+    color: #000;
+  }
+  &__link {
+    font-size: 1.6rem;
+    color: #000;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  &__logo {
+    height: 8rem;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 5rem;
+  }
+
+  &__copyright {
+    font-size: 1.4rem;
+    color: #000;
+    text-align: center;
+
+    &__link {
+      font-size: 1.4rem;
+    }
+  }
+}
