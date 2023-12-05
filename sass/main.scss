@@ -38,7 +38,7 @@ body {
   );
 }
 .nav {
-  width: 100%;
+  width: 80%;
   display: flex;
 
   align-items: center;
@@ -134,8 +134,8 @@ body {
     box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
   }
 }
+
 .btn {
-  display: inline-block;
   background-color: white;
   font-size: 1.9rem;
   font-family: inherit;
@@ -148,10 +148,34 @@ body {
   text-transform: uppercase;
   color: #0a75b4;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
-  width: 45%;
+  width: 27rem;
 
   &:hover {
     background-color: rgba(255, 255, 255, 0.823);
+  }
+  &:active {
+    transform: translateY(0.5rem);
+    scale: 0.98;
+  }
+}
+.btn-demo {
+  margin-left: 4rem;
+  background-color: rgb(102, 211, 112);
+  font-size: 1.9rem;
+  font-family: inherit;
+  font-weight: 600;
+  border: none;
+  padding: 1.25rem 4.5rem;
+  border-radius: 10rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-transform: uppercase;
+  color: #ffffff;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
+  width: 27rem;
+
+  &:hover {
+    background-color: rgb(92, 179, 101);
   }
   &:active {
     transform: translateY(0.5rem);
@@ -219,6 +243,7 @@ body {
 
   .features {
     display: grid;
+    padding-bottom: 5rem;
 
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
@@ -263,4 +288,84 @@ body {
     }
   }
 }
-@import "footer";
+.footer {
+  background-color: rgb(227, 238, 242);
+  font-family: inherit;
+  padding: 5rem 3rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  //gap: 10rem; stlye without the imgs
+  gap: 4rem;
+  // align-items: center;
+
+  &__side1 {
+    display: flex;
+    flex-direction: column;
+    margin-right: 8rem;
+    gap: 3rem;
+    &__logo {
+      font-size: 4rem;
+      font-weight: 500;
+      color: #0582ca;
+    }
+    &__text {
+      font-size: 1.6rem;
+      margin-bottom: -1.5rem;
+    }
+  }
+  &__side2 {
+    display: flex;
+    gap: 4rem;
+
+    &__nav {
+      list-style: none;
+
+      justify-content: center;
+    }
+    &__item {
+      margin-right: 4rem;
+      color: #000;
+    }
+    &__linkheader {
+      min-width: 5rem;
+      font-size: 1.65rem;
+      font-weight: 600;
+      color: #000;
+      text-decoration: none;
+    }
+    &__link {
+      min-width: 5rem;
+      font-size: 1.6rem;
+      color: #000;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  &__img {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    &-1 {
+      transform: scale(0.85);
+    }
+    &-2 {
+      transform: scale(0.85);
+    }
+  }
+  &__copyright {
+    font-size: 1.4rem;
+    color: #000;
+    text-align: center;
+    width: 100%;
+  }
+  &__link {
+    font-size: 1.4rem;
+    text-decoration: none;
+  }
+}
