@@ -233,38 +233,42 @@ body {
     text-decoration: none;
     color: #ffffff; }
 
-.section--2 {
+.section--3 {
   background: linear-gradient(to bottom right, #072536, #0582ca, #00a6fb); }
-  .section--2 .section__title {
+  .section--3 .section__title {
     text-align: start;
     margin-bottom: 4rem; }
-    .section--2 .section__title__description {
+    .section--3 .section__title__description {
       font-size: 1.8rem;
       color: #ffffff;
       margin: 0 24.7% 0 24.7%; }
-    .section--2 .section__title__header {
+    .section--3 .section__title__header {
       font-size: 6rem;
       margin-left: 24.7%;
       padding-top: 6rem;
       color: #ffffff; }
-  .section--2 .features {
+  .section--3 .features {
     display: grid;
     padding-bottom: 5rem;
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
     margin: 0 25%; }
-    .section--2 .features__img {
+    .section--3 .features__img {
       width: 100%; }
-    .section--2 .features__feature {
+    .section--3 .features__feature {
       align-self: center;
       justify-self: center;
       width: 70%;
       font-size: 1.5rem; }
-    .section--2 .features__header {
+    .section--3 .features__header {
       font-size: 2rem;
       margin-bottom: 1rem;
       color: #ffffff; }
-    .section--2 .features__p {
+    .section--3 .features__p {
       font-size: 2rem;
       margin-bottom: 1rem;
       color: #ffffff; }
+
+.section--2 {
+  height: 30rem;
+  background-color: #393939; }
