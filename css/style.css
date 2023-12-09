@@ -166,6 +166,8 @@ body {
       padding-top: 6rem;
       color: #ffffff; }
   .section--2 .features {
+    /* tried to apply max-width but stays on left
+    max-width: 60%; */
     display: grid;
     padding-bottom: 5rem;
     grid-template-columns: 1fr 1fr;
