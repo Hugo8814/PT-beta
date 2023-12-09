@@ -1,0 +1,26 @@
+.kickstarter {
+  transition: top 0.3s ease;
+  box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+  position: sticky;
+  top: 9rem;
+  height: 6rem;
+
+  width: 100%;
+  background-color: rgb(5, 206, 120);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  font-weight: 600;
+
+  &-logo {
+    fill: #f3f3f3;
+
+    &-1 {
+      height: 90%;
+      fill: #f3f3f3;
+      filter: brightness(0) invert(1);
+      margin: 0 4rem 0 4rem;
+    }
+  }
+}
