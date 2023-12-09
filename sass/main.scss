@@ -30,7 +30,7 @@ body {
   width: 100%;
 
   z-index: 100;
-  background-color: #0582ca;
+
   background: linear-gradient(
     90deg,
     rgba(5, 130, 202, 1),
@@ -38,7 +38,7 @@ body {
   );
 }
 .nav {
-  width: 80%;
+  width: 60%;
   display: flex;
 
   align-items: center;
@@ -68,6 +68,7 @@ body {
     display: flex;
     justify-content: center;
     margin-top: 9rem;
+    padding-bottom: 10rem;
 
     //  background: rgb(5, 25, 35);
     background: linear-gradient(
@@ -175,7 +176,7 @@ body {
   width: 27rem;
 
   &:hover {
-    background-color: rgb(92, 179, 101);
+    background-color: rgb(5, 206, 120);
   }
   &:active {
     transform: translateY(0.5rem);
@@ -183,21 +184,33 @@ body {
   }
 }
 
-/////////////////////////////////////////////////////////////////////////////
-/// specer
-// .spacer {
-//   padding-top: 5rem;
-//   height: 10vh;
-//   width: 100%;
-//   background-color: rgba(5, 25, 35, 1);
-//   background: linear-gradient(
-//     to bottom right,
+.kickstarter {
+  //padding-top: 5rem;
+  transition: top 0.3s ease;
+  box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+  position: sticky;
+  top: 9rem;
+  height: 6rem;
 
-//     rgba(5, 25, 35, 1),
-//     rgba(5, 130, 202, 1),
-//     rgba(0, 166, 251, 1)
-//   );
-// }
+  width: 100%;
+  background-color: rgb(5, 206, 120);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  font-weight: 600;
+
+  &-logo {
+    fill: #f3f3f3;
+
+    &-1 {
+      height: 90%;
+      fill: #f3f3f3;
+      filter: brightness(0) invert(1);
+      margin: 0 4rem 0 4rem;
+    }
+  }
+}
 
 /////////////////////////////////////////////////////////////////////////////
 ////section 2

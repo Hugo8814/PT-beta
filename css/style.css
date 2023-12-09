@@ -26,11 +26,10 @@ body {
   height: 9rem;
   width: 100%;
   z-index: 100;
-  background-color: #0582ca;
   background: linear-gradient(90deg, #0582ca, #00a6fb); }
 
 .nav {
-  width: 80%;
+  width: 60%;
   display: flex;
   align-items: center;
   justify-self: space-between; }
@@ -52,6 +51,7 @@ body {
   display: flex;
   justify-content: center;
   margin-top: 9rem;
+  padding-bottom: 10rem;
   background: linear-gradient(to top right, #072536, #0582ca, #00a6fb); }
 
 .box1 {
@@ -125,10 +125,31 @@ body {
   box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
   width: 27rem; }
   .btn-demo:hover {
-    background-color: #5cb365; }
+    background-color: #05ce78; }
   .btn-demo:active {
     transform: translateY(0.5rem);
     scale: 0.98; }
+
+.kickstarter {
+  transition: top 0.3s ease;
+  box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+  position: sticky;
+  top: 9rem;
+  height: 6rem;
+  width: 100%;
+  background-color: #05ce78;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  font-weight: 600; }
+  .kickstarter-logo {
+    fill: #f3f3f3; }
+    .kickstarter-logo-1 {
+      height: 90%;
+      fill: #f3f3f3;
+      filter: brightness(0) invert(1);
+      margin: 0 4rem 0 4rem; }
 
 .section--2 {
   background: linear-gradient(to bottom right, #072536, #0582ca, #00a6fb); }
