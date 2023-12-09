@@ -3038,6 +3038,8 @@ const dataFromServer = {
     "Biceps": "yes"
    }
   ]};
+// Print names of exercises and create node.js (express.js server) html links for exercise library
+
 
 // Find exercises that target a specific muscle
 function findExercisesByMuscle(muscle) {
@@ -3071,3 +3073,4 @@ console.log('Exercises for Pectorals:', muscleExercises);
 const exerciseMuscles = findMusclesByExercise('Barbell ab rollouts');
 console.log('Muscles used in Barbell ab rollouts:', exerciseMuscles);
 
+console.log()
