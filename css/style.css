@@ -355,3 +355,8 @@ body {
 .section--2 {
   height: 30rem;
   background-color: #393939; }
+
+  .section4{
+    height: 30rem;
+    background: linear-gradient(to bottom right, #072536, #0582ca, #00a6fb);
+  }
