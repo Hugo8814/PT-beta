@@ -1,5 +1,5 @@
 .footer {
-  background-color: rgb(227, 238, 242);
+  background-color: #2e2e2e;
   font-family: inherit;
   padding: 5rem 3rem;
   display: flex;
@@ -23,6 +23,7 @@
     &__text {
       font-size: 1.6rem;
       margin-bottom: -1.5rem;
+      color: #e4e4e4;
     }
   }
   &__side2 {
@@ -48,7 +49,7 @@
       min-width: 5rem;
       font-size: 1.65rem;
       font-weight: 600;
-      color: #000;
+      color: #b1b1b1;
       text-decoration: none;
       @media screen and (max-width: 500px) {
         margin-right: 0rem;
@@ -58,7 +59,7 @@
     &__link {
       min-width: 5rem;
       font-size: 1.6rem;
-      color: #000;
+      color: #f7f7f7;
       text-decoration: none;
 
       &:hover {
@@ -96,7 +97,7 @@
   }
   &__copyright {
     font-size: 1.4rem;
-    color: #000;
+    color: #a1a1a1;
     text-align: center;
     width: 100%;
   }
