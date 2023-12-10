@@ -18,11 +18,12 @@
   );
 }
 .box1 {
+  padding-top: 5rem;
   display: flex;
   justify-content: center;
   flex-direction: row;
   margin: 0 auto;
-  height: 55rem;
+  height: 50rem;
   gap: 7rem;
   //margin: 5rem;
   @media screen and (max-width: 1000px) {
@@ -70,6 +71,7 @@
     }
   }
   &-side2 {
+    font-size: 62.5% !important;
     border-radius: 50rem;
     background-color: rgba(3, 72, 111, 0.9);
     &__phone {

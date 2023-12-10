@@ -34,7 +34,8 @@ body {
     display: none; }
   @media screen and (max-width: 600px) {
     .kickstarter-2 {
-      height: 19rem;
+      height: 4rem;
+      height: 12rem;
       display: block;
       filter: brightness(0) invert(1);
       margin: 0 4rem 0 4rem; } }
@@ -47,7 +48,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 3rem;
+    font-size: 2.4rem;
     font-weight: 600; }
     @media screen and (max-width: 1000px) {
       .kickstarter-1 {
@@ -175,11 +176,12 @@ body {
   background: linear-gradient(to top right, #072536, #0582ca, #00a6fb); }
 
 .box1 {
+  padding-top: 5rem;
   display: flex;
   justify-content: center;
   flex-direction: row;
   margin: 0 auto;
-  height: 55rem;
+  height: 50rem;
   gap: 7rem; }
   @media screen and (max-width: 1000px) {
     .box1 {
@@ -213,6 +215,7 @@ body {
       margin-bottom: 3rem;
       color: #f3f3f3; }
   .box1-side2 {
+    font-size: 62.5% !important;
     border-radius: 50rem;
     background-color: rgba(3, 72, 111, 0.9);
     box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px; }
