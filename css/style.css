@@ -28,8 +28,7 @@ body {
   top: 9rem;
   display: flex;
   justify-content: center;
-  align-items: center;
-  box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px; }
+  align-items: center; }
   .kickstarter-2 {
     display: none; }
   @media screen and (max-width: 600px) {
@@ -98,7 +97,7 @@ body {
   background-color: rgba(255, 255, 255, 0.95); }
 
 .footer {
-  background-color: #e3eef2;
+  background-color: #2e2e2e;
   font-family: inherit;
   padding: 5rem 3rem;
   display: flex;
@@ -117,7 +116,8 @@ body {
       color: #0582ca; }
     .footer__side1__text {
       font-size: 1.6rem;
-      margin-bottom: -1.5rem; }
+      margin-bottom: -1.5rem;
+      color: #e4e4e4; }
   .footer__side2 {
     display: flex;
     gap: 4rem;
@@ -137,7 +137,7 @@ body {
       min-width: 5rem;
       font-size: 1.65rem;
       font-weight: 600;
-      color: #000;
+      color: #b1b1b1;
       text-decoration: none; }
       @media screen and (max-width: 500px) {
         .footer__side2__linkheader {
@@ -146,7 +146,7 @@ body {
     .footer__side2__link {
       min-width: 5rem;
       font-size: 1.6rem;
-      color: #000;
+      color: #f7f7f7;
       text-decoration: none; }
       .footer__side2__link:hover {
         text-decoration: underline; }
@@ -174,7 +174,7 @@ body {
           width: 100%; } }
   .footer__copyright {
     font-size: 1.4rem;
-    color: #000;
+    color: #a1a1a1;
     text-align: center;
     width: 100%; }
   .footer__link {
@@ -317,19 +317,19 @@ body {
     padding: 0rem 3rem; } }
 
 .section--3 {
-  background: linear-gradient(to bottom right, #072536, #0582ca, #00a6fb); }
+  background: whitesmoke; }
   .section--3 .section__title {
     text-align: start;
     margin-bottom: 4rem; }
     .section--3 .section__title__description {
       font-size: 1.8rem;
-      color: #ffffff;
+      color: #2c2c2c;
       margin: 0 24.7% 0 24.7%; }
     .section--3 .section__title__header {
       font-size: 6rem;
       margin-left: 24.7%;
       padding-top: 6rem;
-      color: #ffffff; }
+      color: #2c2c2c; }
   .section--3 .features {
     display: grid;
     padding-bottom: 5rem;
@@ -346,12 +346,23 @@ body {
     .section--3 .features__header {
       font-size: 2rem;
       margin-bottom: 1rem;
-      color: #ffffff; }
+      color: #2c2c2c; }
     .section--3 .features__p {
       font-size: 2rem;
       margin-bottom: 1rem;
-      color: #ffffff; }
+      color: #2c2c2c; }
+
+.section4 {
+  height: 30rem;
+  background: linear-gradient(to bottom right, #072536, #0582ca, #00a6fb); }
 
 .section--2 {
+  padding-top: 9rem;
+  justify-content: center;
+  display: flex;
   height: 30rem;
-  background-color: #393939; }
+  background-color: #1d1d1d;
+  font-size: 6rem; }
+
+.section--2__text {
+  color: white; }
