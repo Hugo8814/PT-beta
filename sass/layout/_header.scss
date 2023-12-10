@@ -29,6 +29,7 @@
   @media screen and (max-width: 1000px) {
     margin: 25rem auto;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
     &-side2 {
       width: 40%;
@@ -38,19 +39,22 @@
       }
     }
   }
-  @media screen and (max-width: 800px) {
-  }
 
   &-side1 {
     display: flex;
     flex-direction: column;
     align-self: center;
     max-width: 64rem;
+    @media screen and (max-width: 1000px) {
+      justify-content: center;
+      align-items: center;
+    }
 
     &-title {
       &-1 {
         color: rgb(202, 218, 220);
         line-height: 1;
+        margin-top: 9rem;
       }
       &-2 {
         color: #f3f3f3;
@@ -67,23 +71,49 @@
       &-4 {
         margin-bottom: 3rem;
         color: #f3f3f3;
+        @media screen and (max-width: 1000px) {
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+        }
       }
     }
   }
   &-side2 {
-    font-size: 62.5% !important;
     border-radius: 50rem;
     background-color: rgba(3, 72, 111, 0.9);
+    max-width: 100%;
+    max-height: 100%;
+
     &__phone {
-      height: 100%;
-      width: 100%;
+      width: 223px;
+      height: 450px;
+    }
+    @media screen and (max-width: 600px) {
     }
     box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
   }
 }
+@media screen and (max-width: 480px) {
+  .box1-side1-title {
+    &-2 {
+      font-size: 5rem;
+    }
+    &-3 {
+      font-size: 4rem;
+    }
+    &-4 {
+      font-size: 1.3rem;
+    }
+  }
+}
+
 ///test
 ///
 .btn {
+  @media screen and (max-width: 1000px) {
+    margin-left: 0;
+  }
   margin-left: 2rem;
   margin-top: 2rem;
   background-color: white;
@@ -109,6 +139,9 @@
   }
 }
 .btn-demo {
+  @media screen and (max-width: 1000px) {
+    margin-left: 0;
+  }
   margin-left: 2rem;
   margin-top: 2rem;
   background-color: rgb(102, 211, 112);
@@ -136,4 +169,23 @@
     text-decoration: none;
     color: #ffffff;
   }
+}
+
+@media screen and (max-width: 1000px) {
+  .btn-centre {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-left: 0;
+  }
+}
+
+@media screen and (max-width: 580px) {
+  .box1-side1-title-4 {
+    font-size: 1.3rem;
+    padding: 0rem 3rem;
+  }
+  // .box1 {
+  //   // margin-top: 35%;
+  // }
 }
