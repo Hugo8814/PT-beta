@@ -28,8 +28,11 @@
   &__side2 {
     display: flex;
     gap: 4rem;
+    justify-content: center;
+    text-align: center;
 
     &__nav {
+      width: 20;
       list-style: none;
 
       justify-content: center;
@@ -38,7 +41,7 @@
       margin-right: 4rem;
       color: #000;
       @media screen and (max-width: 500px) {
-        margin-right: 0rem;
+        margin-right: 0;
       }
     }
     &__linkheader {
@@ -47,6 +50,10 @@
       font-weight: 600;
       color: #000;
       text-decoration: none;
+      @media screen and (max-width: 500px) {
+        margin-right: 0rem;
+        min-width: 0rem;
+      }
     }
     &__link {
       min-width: 5rem;

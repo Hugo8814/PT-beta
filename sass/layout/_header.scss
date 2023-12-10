@@ -23,21 +23,14 @@
   justify-content: center;
   flex-direction: row;
   margin: 0 auto;
-  height: 50rem;
+  //height: 50rem;
   gap: 7rem;
   //margin: 5rem;
   @media screen and (max-width: 1000px) {
-    margin: 25rem auto;
+    margin: 0 auto;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    &-side2 {
-      width: 40%;
-      &__phone {
-        height: 100%;
-        width: 100%;
-      }
-    }
   }
 
   &-side1 {
@@ -54,7 +47,7 @@
       &-1 {
         color: rgb(202, 218, 220);
         line-height: 1;
-        margin-top: 9rem;
+        // margin-top: 9rem;
       }
       &-2 {
         color: #f3f3f3;
@@ -79,11 +72,12 @@
       }
     }
   }
-  &-side2 {
-    border-radius: 50rem;
+  &-side2 img {
+    border-radius: 5.6rem;
     background-color: rgba(3, 72, 111, 0.9);
     max-width: 100%;
     max-height: 100%;
+    overflow: hidden;
 
     &__phone {
       width: 223px;

@@ -120,8 +120,11 @@ body {
       margin-bottom: -1.5rem; }
   .footer__side2 {
     display: flex;
-    gap: 4rem; }
+    gap: 4rem;
+    justify-content: center;
+    text-align: center; }
     .footer__side2__nav {
+      width: 20;
       list-style: none;
       justify-content: center; }
     .footer__side2__item {
@@ -129,13 +132,17 @@ body {
       color: #000; }
       @media screen and (max-width: 500px) {
         .footer__side2__item {
-          margin-right: 0rem; } }
+          margin-right: 0; } }
     .footer__side2__linkheader {
       min-width: 5rem;
       font-size: 1.65rem;
       font-weight: 600;
       color: #000;
       text-decoration: none; }
+      @media screen and (max-width: 500px) {
+        .footer__side2__linkheader {
+          margin-right: 0rem;
+          min-width: 0rem; } }
     .footer__side2__link {
       min-width: 5rem;
       font-size: 1.6rem;
@@ -189,19 +196,13 @@ body {
   justify-content: center;
   flex-direction: row;
   margin: 0 auto;
-  height: 50rem;
   gap: 7rem; }
   @media screen and (max-width: 1000px) {
     .box1 {
-      margin: 25rem auto;
+      margin: 0 auto;
       flex-direction: column;
       justify-content: center;
-      align-items: center; }
-      .box1-side2 {
-        width: 40%; }
-        .box1-side2__phone {
-          height: 100%;
-          width: 100%; } }
+      align-items: center; } }
   .box1-side1 {
     display: flex;
     flex-direction: column;
@@ -213,8 +214,7 @@ body {
         align-items: center; } }
     .box1-side1-title-1 {
       color: #cadadc;
-      line-height: 1;
-      margin-top: 9rem; }
+      line-height: 1; }
     .box1-side1-title-2 {
       color: #f3f3f3;
       font-size: 7rem;
@@ -233,13 +233,14 @@ body {
           justify-content: center;
           align-items: center;
           text-align: center; } }
-  .box1-side2 {
-    border-radius: 50rem;
+  .box1-side2 img {
+    border-radius: 5.6rem;
     background-color: rgba(3, 72, 111, 0.9);
     max-width: 100%;
     max-height: 100%;
+    overflow: hidden;
     box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px; }
-    .box1-side2__phone {
+    .box1-side2 img__phone {
       width: 223px;
       height: 450px; }
 
