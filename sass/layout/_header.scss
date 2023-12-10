@@ -1,0 +1,136 @@
+.section--1 {
+  display: flex;
+  justify-content: center;
+  margin-top: 9rem;
+  padding-bottom: 10rem;
+  height: fit-content;
+  width: 100%;
+
+  // padding-bottom: 10rem;
+
+  //  background: rgb(5, 25, 35);
+  background: linear-gradient(
+    to top right,
+
+    rgb(7, 37, 54),
+    rgba(5, 130, 202, 1),
+    rgba(0, 166, 251, 1)
+  );
+}
+.box1 {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  margin: 0 auto;
+  height: 55rem;
+  gap: 7rem;
+  //margin: 5rem;
+  @media screen and (max-width: 1000px) {
+    margin: 25rem auto;
+    flex-direction: column;
+    align-items: center;
+    &-side2 {
+      width: 40%;
+      &__phone {
+        height: 100%;
+        width: 100%;
+      }
+    }
+  }
+  @media screen and (max-width: 800px) {
+  }
+
+  &-side1 {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    max-width: 64rem;
+
+    &-title {
+      &-1 {
+        color: rgb(202, 218, 220);
+        line-height: 1;
+      }
+      &-2 {
+        color: #f3f3f3;
+        font-size: 7rem;
+        line-height: 1.5;
+      }
+      &-3 {
+        color: #f3f3f3;
+        font-size: 6rem;
+        font-weight: 500;
+        line-height: 0.8;
+        margin-bottom: 3rem;
+      }
+      &-4 {
+        margin-bottom: 3rem;
+        color: #f3f3f3;
+      }
+    }
+  }
+  &-side2 {
+    border-radius: 50rem;
+    background-color: rgba(3, 72, 111, 0.9);
+    &__phone {
+      height: 100%;
+      width: 100%;
+    }
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+  }
+}
+
+.btn {
+  margin-left: 2rem;
+  margin-top: 2rem;
+  background-color: white;
+  font-size: 1.9rem;
+  font-family: inherit;
+  font-weight: 600;
+  border: none;
+  padding: 1.25rem 4.5rem;
+  border-radius: 10rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-transform: uppercase;
+  color: #0a75b4;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
+  width: 27rem;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.823);
+  }
+  &:active {
+    transform: translateY(0.5rem);
+    scale: 0.98;
+  }
+}
+.btn-demo {
+  margin-left: 2rem;
+  margin-top: 2rem;
+  background-color: rgb(102, 211, 112);
+  font-size: 1.9rem;
+  font-family: inherit;
+  font-weight: 600;
+  border: none;
+  padding: 1.25rem 4.5rem;
+  border-radius: 10rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-transform: uppercase;
+
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
+  width: 27rem;
+
+  &:hover {
+    background-color: rgb(5, 206, 120);
+  }
+  &:active {
+    transform: translateY(0.5rem);
+    scale: 0.98;
+  }
+  &-1 {
+    text-decoration: none;
+    color: #ffffff;
+  }
+}
