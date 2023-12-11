@@ -3072,5 +3072,3 @@ console.log('Exercises for Pectorals:', muscleExercises);
 
 const exerciseMuscles = findMusclesByExercise('Barbell ab rollouts');
 console.log('Muscles used in Barbell ab rollouts:', exerciseMuscles);
-
-console.log()
