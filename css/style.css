@@ -89,8 +89,24 @@ body {
     border-radius: 20rem;
     margin-right: auto; }
   .nav-svg {
-    height: 5rem;
-    fill: #f3f3f3; }
+    height: 4rem;
+    width: 15rem;
+    font-size: 1.6rem;
+    font-family: inherit;
+    font-weight: 600;
+    border: none;
+    border-radius: 10rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-transform: uppercase;
+    color: orange;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
+    background-color: whitesmoke;
+    }
+    .nav-svg:hover {
+      background-color: orange;
+      color: whitesmoke;
+    }
 
 .nav.sticky {
   position: fixed;
@@ -115,6 +131,7 @@ body {
         font-weight: 500;
         color: #0582ca; }
       .footer__side1__text {
+        width: 30rem;
         font-size: 1.6rem;
         margin-bottom: -1.5rem;
         color: #e4e4e4; }
