@@ -37,38 +37,21 @@
       justify-self: center;
       width: 70%;
       font-size: 1.5rem;
-      ////// this is for when i add  svgs  maybe will see
-      // &__icon {
-      //   display: flex;
-      //   align-items: center;
-      //   justify-content: center;
-      //   background-color: white;
-      //   height: 5.5rem;
-      //   width: 5.5rem;
-      //   border-radius: 50%;
-      //   margin-bottom: 2rem;
-
-      //   &svg {
-      //     height: 2.5rem;
-      //     width: 2.5rem;
-      //     fill: white;
-      //   }
-      // }
     }
     &__header {
-      font-size: 2rem;
+      font-size: 3rem;
       margin-bottom: 1rem;
       color: #2c2c2c;
     }
     &__p {
-      font-size: 2rem;
+      font-size: 1;
+      font-weight: 500;
       margin-bottom: 1rem;
-      color: #2c2c2c;
+      color: #646363;
     }
   }
 }
 
-.section4 {
-  height: 30rem;
-  background: linear-gradient(to bottom right, #072536, #0582ca, #00a6fb);
+.box3 {
+  display: flex;
 }
