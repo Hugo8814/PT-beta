@@ -7,17 +7,18 @@ h1{
 }
 
 head{
-	position: fixed;
+	position: absolute;
 }
 
 body{
     background-color: #1f1f1f;
     display: flex;
     justify-content: center;
+    color: white;
 }
 
 #navigator{
-    position: fixed;
+    position: absolute;
     color:#c5c5c5;
     background-color: #4d4848;
     width: 100%;
@@ -36,12 +37,7 @@ a:visited{
 a:hover{
     color:#242222;}
 
-#workout{
-    margin-top: 2rem;
-   text-align: center;
-}
 
-#addWorkout{
+#baseContent{
     
 }
-	
