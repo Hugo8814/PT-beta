@@ -308,7 +308,8 @@ body {
     transition: all 0.3s;
     text-transform: uppercase;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
-    width: 27rem; }
+    width: 27rem; 
+    color: #ffffff}
     @media screen and (max-width: 1000px) {
       .btn-demo {
         margin-left: 0; } }
@@ -317,9 +318,7 @@ body {
     .btn-demo:active {
       transform: translateY(0.5rem);
       scale: 0.98; }
-    .btn-demo-1 {
-      text-decoration: none;
-      color: #ffffff; }
+    
   
   @media screen and (max-width: 1000px) {
     .btn-centre {
