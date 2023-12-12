@@ -239,4 +239,6 @@ path:is( .nonmuscles, .nonmuscles2, .nonmuscles3, .toes1, .toes2, .head, .sst14,
 		top: 32px;
     }
 
-	
+	#site-search{
+        color: #c0c0c0;
+    }
