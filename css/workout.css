@@ -216,7 +216,6 @@ body{
 }
 
 #addWorkout{
-    width: ;
 }
 
 .please{
@@ -225,3 +224,10 @@ body{
 	justify-content: center;
 	text-align: center;
 }
+
+a:link{
+  color: #c5c5c5;}
+a:visited{
+  color: #c5c5c5;}
+a:hover{
+  color:#242222;}

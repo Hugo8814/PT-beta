@@ -440,3 +440,10 @@ path:is( .nonmuscles, .nonmuscles2, .nonmuscles3, .toes1, .toes2, .head, .sst14,
 		justify-content: center;
 		text-align: center;
 	}
+
+a:link{
+    color: #c5c5c5;}
+a:visited{
+    color: #c5c5c5;}
+a:hover{
+    color:#242222;}

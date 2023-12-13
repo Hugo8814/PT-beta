@@ -227,3 +227,10 @@ body{
 }
 	
 
+a:link{
+    color: #c5c5c5;}
+a:visited{
+    color: #c5c5c5;}
+a:hover{
+    color:#242222;}
+
