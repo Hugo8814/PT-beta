@@ -1,3 +1,14 @@
+let mainLogo = document.getElementById("navLogo");
+console.log(navLogo);
+
+mainLogo.addEventListener("click", function(){
+console.log("clicked logo")
+window.location.href=('../')
+})
+
+
+
+
 // const minusButton = document.getElementById("minusButton");
 
 let countdownTimer = 60;
@@ -137,3 +148,4 @@ function toggleBoxes() {
     maleavatarback.style.display = 'block';
   }
 };
+

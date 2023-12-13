@@ -216,9 +216,12 @@ body{
 }
 
 #addWorkout{
-    justify-content: center;
-    margin-top: 15rem;
-    margin-bottom: 3rem;
-    text-align: center;
+    width: ;
 }
-	
+
+.please{
+	margin-top: 12rem;
+	display: flex;
+	justify-content: center;
+	text-align: center;
+}

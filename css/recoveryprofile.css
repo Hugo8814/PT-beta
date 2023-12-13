@@ -1,5 +1,13 @@
-html{
-}
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit; }
+
+html {
+    box-sizing: border-box;
+    font-size: 62.5%; }
 
 h1{
     color: white;
@@ -7,25 +15,218 @@ h1{
 }
 
 head{
-	position: absolute;
+	position: fixed;
 }
 
 body{
     background-color: #1f1f1f;
+    color: aqua;
+    font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  line-height: 1.9;
+}
+
+.box-0 {
     display: flex;
     justify-content: center;
+    align-items: center;
+    height: 9rem;
+    width: 100dvw;
+    z-index: 100;
+    background: linear-gradient(90deg, #0582ca, #00a6fb); }
+
+.box-1 {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    z-index: 100;
+    height: 3rem;
+    background: white; 
+}
+    
+.box-1contents {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 984px;
+    font-size: 1rem;
+    z-index: 101;
+    height: 3rem;
 }
 
 #navigator{
-    position: absolute;
+    position: fixed;
     color:#c5c5c5;
     background-color: #4d4848;
     width: 100%;
     top: 0;
-    padding: 10px 0px 10px 20px;
     display: flex;
     justify-content: space-evenly;
+    flex-direction: column;
 }
+
+.nav {
+    max-width: 984px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-self: space-between; }
+    .nav-logo {
+      font-size: 5rem;
+      font-weight: 500;
+      color: #f3f3f3;
+      border-radius: 20rem;
+      margin-right: auto; }
+    .nav-svg {
+      height: 4rem;
+      width: 15rem;
+      font-size: 1.6rem;
+      font-family: inherit;
+      font-weight: 600;
+      border: none;
+      border-radius: 10rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-transform: uppercase;
+      color: orange;
+      box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
+      background-color: whitesmoke;
+      }
+      .nav-svg:hover {
+        background-color: orange;
+        color: whitesmoke;
+      }
+
+.footer {
+    background-color: #2e2e2e;
+    font-family: inherit;
+    padding: 5rem 3rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4rem; }
+    .footer__side1 {
+      display: flex;
+      flex-direction: column;
+      margin-right: 8rem;
+      gap: 3rem; }
+      .footer__side1__logo {
+        font-size: 4rem;
+        font-weight: 500;
+        color: #0582ca; }
+      .footer__side1__text {
+        width: 30rem;
+        font-size: 1.6rem;
+        margin-bottom: -1.5rem;
+        color: #e4e4e4; }
+    .footer__side2 {
+      display: flex;
+      gap: 4rem;
+      justify-content: center;
+      text-align: center; }
+      .footer__side2__nav {
+        
+        list-style: none;
+        justify-content: center; }
+      .footer__side2__item {
+        margin-right: 4rem;
+        color: #000; }
+        @media screen and (max-width: 500px) {
+          .footer__side2__item {
+            margin-right: 0; } }
+      .footer__side2__linkheader {
+        min-width: 5rem;
+        font-size: 1.65rem;
+        font-weight: 600;
+        color: #b1b1b1;
+        text-decoration: none; }
+        @media screen and (max-width: 500px) {
+          .footer__side2__linkheader {
+            margin-right: 0rem;
+            min-width: 0rem; } }
+      .footer__side2__link {
+        min-width: 5rem;
+        font-size: 1.6rem;
+        color: #f7f7f7;
+        text-decoration: none; }
+        .footer__side2__link:hover {
+          text-decoration: underline; }
+    .footer__img {
+      display: flex;
+      width: 100%;
+      justify-content: center; }
+      @media screen and (max-width: 600px) {
+        .footer__img {
+          transform: scale(0.75);
+          width: 70%; } }
+      .footer__img-1 {
+        transform: scale(0.85); }
+        @media screen and (max-width: 600px) {
+          .footer__img-1 {
+            transform: scale(0.65);
+            height: 100%;
+            width: 100%; } }
+      .footer__img-2 {
+        transform: scale(0.85); }
+        @media screen and (max-width: 600px) {
+          .footer__img-2 {
+            transform: scale(0.65);
+            height: 100%;
+            width: 100%; } }
+    .footer__copyright {
+      font-size: 1.4rem;
+      color: #a1a1a1;
+      text-align: center;
+      width: 100%; }
+    .footer__link {
+      font-size: 1.4rem;
+      text-decoration: none; }
+
+    .btn {
+        margin-left: 2rem;
+        margin-top: 2rem;
+        background-color: white;
+        font-size: 1.9rem;
+        font-family: inherit;
+        font-weight: 600;
+        border: none;
+        padding: 1.25rem 4.5rem;
+        border-radius: 10rem;
+        cursor: pointer;
+        transition: all 0.3s;
+        text-transform: uppercase;
+        color: #0a75b4;
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
+        width: 27rem; }
+        @media screen and (max-width: 1000px) {
+          .btn {
+            margin-left: 0; } }
+        .btn:hover {
+          background-color: rgba(255, 255, 255, 0.823); }
+        .btn:active {
+          transform: translateY(0.5rem);
+          scale: 0.98; }
+
+
+#workout{
+    margin-top: 2rem;
+   text-align: center;
+}
+
+#addWorkout{
+    justify-content: center;
+    margin-top: 15rem;
+    margin-bottom: 3rem;
+    text-align: center;
+}
+	
+#site-search{
+        color: #c0c0c0;
+}
+	
+
 
 a:link{
     color: #c5c5c5;}
@@ -43,7 +244,7 @@ path:is( .nonmuscles, .nonmuscles2, .nonmuscles3, .toes1, .toes2, .head, .sst14,
 }
 
 #recoveryBox{
-	position: absolute;
+	
 	top: 0;
 	right: 0;
 	color: white;
@@ -95,7 +296,7 @@ path:is( .nonmuscles, .nonmuscles2, .nonmuscles3, .toes1, .toes2, .head, .sst14,
 }
 
 #muscleName{
-	position: absolute;
+	
 	top: 25;
 	right: 0;
 	color: white;
@@ -104,7 +305,7 @@ path:is( .nonmuscles, .nonmuscles2, .nonmuscles3, .toes1, .toes2, .head, .sst14,
 }
 
 #clickedTimer{
-    position: absolute;
+    
     font-weight: bold;
     color: #c0c0c0;
     max-width: 120px;
@@ -228,33 +429,26 @@ path:is( .nonmuscles, .nonmuscles2, .nonmuscles3, .toes1, .toes2, .head, .sst14,
 	.sst33{fill:#1E1E1C;stroke:#020203;stroke-width:3;stroke-miterlimit:10;}
 
 	#muscleSelector{
-        position: absolute;
+        
 		border-width: 2px;
 		border-style: solid;
 		max-width: 480px;
-		top: 40px;
-        height: 650px;
-
     }
 
 	.avatarBox{
+		
+        justify-content: center;
 		border-width: 2px;
 		border-style: dashed;
-		max-width: 480px;
-        min-height: 650px;
     }
 
     #maleavatarfront{
-        position: relative;
         height: 600;
         width: 480px;
-        top: 0;
-        right: 0;
-        display: block;
+        
     }
 
     #maleavatarback{
-        position: relative;
         height: 600;
         width: 480px;
         top: 0;
@@ -263,9 +457,16 @@ path:is( .nonmuscles, .nonmuscles2, .nonmuscles3, .toes1, .toes2, .head, .sst14,
     }
 
 #viewSwap{
-        position: absolute;
+        
         top: 175px;}
     
 #viewSwap:hover{
         background-color: rgb(0, 207, 10);
         }  
+
+.please{
+	margin-top: 12rem;
+	display: flex;
+	justify-content: center;
+	text-align: center;
+}
