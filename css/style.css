@@ -573,7 +573,7 @@ body {
         height: 40rem;
       }
     }
-    @media screen and (max-width: 350px){
+    @media screen and (max-width: 375px){
       .section--3 .features__img2 {
         border-radius: 2rem;
         margin-left: 20px;
