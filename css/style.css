@@ -566,6 +566,13 @@ body {
         height: 50rem;
       }
     }
+    @media screen and (max-width: 450px){
+      .section--3 .features__img2 {
+        border-radius: 2rem;
+        margin-left: 20px;
+        height: 40rem;
+      }
+    }
     @media screen and (max-width: 350px){
       .section--3 .features__img2 {
         border-radius: 2rem;
