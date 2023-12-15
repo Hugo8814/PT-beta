@@ -70,7 +70,7 @@ body {
   justify-content: center;
   align-items: center;
   height: 9rem;
-  width: 100dvw;
+  width: 100%;
   z-index: 100;
   background: linear-gradient(90deg, #0582ca, #00a6fb); }
 
