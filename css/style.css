@@ -157,7 +157,7 @@ body {
       margin-right: 8rem;
       margin-left: 8rem;
       gap: 3rem; }
-      @media screen and (max-width: 740px) {
+      @media screen and (max-width: 715px) {
         .footer__side1 {
           display: flex;
           flex-direction: column;
@@ -193,7 +193,7 @@ body {
         list-style: none;
         justify-content: center; 
         }
-        @media screen and (max-width: 880px) {
+        @media screen and (max-width: 879px) {
           .footer__side2__nav {
             padding-top: 3rem; 
             } }
@@ -286,7 +286,7 @@ body {
         @media screen and (max-width: 1000px) {
           .btn {
             margin-left: 0; } }
-            @media screen and (max-width: 739px) {
+            @media screen and (max-width: 879px) {
               .footer__btn {
                 margin-bottom: 2rem; } }
         .btn:hover {
