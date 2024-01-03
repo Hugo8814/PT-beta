@@ -331,9 +331,10 @@ body{
                 scale: 0.98; }
 
 
-#workout{
+#addworkout{
     margin-top: 2rem;
    text-align: center;
+   display: none;
 }
 
 
@@ -370,4 +371,12 @@ text-transform: uppercase;
     font-weight: 400;
       }
 
-     
+      .suggestion-item {
+        cursor: pointer;
+        padding: 5px;
+        border-bottom: 1px solid #ddd;
+      }
+      
+      .suggestion-item:hover {
+        background-color: #f0f0f0;
+      }

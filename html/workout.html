@@ -39,21 +39,50 @@
 
     <section class="please">
 
-      <section id="addWorkout">
+      <section>
 
         <h3>Workout</h3>
 
         <button id="btn1"> Resume</button>
-        <button id="btn1"> New</button>
+        <button id="btnNew"> New</button>
+
+        <div id="suggestions">
+            <input type="text" id="muscleInput" list="muscleSuggestions" placeholder="Enter muscle name">
+            <button id="addMuscleButton">Add Muscle</button>
+            <datalist id="muscleSuggestions">
+              <option value="Biceps"></option>
+        <option value="Triceps"></option>
+        <option value="Deltoids"></option>
+            </datalist>
+            <select id="muscleDropdown">
+              <option value="" disabled selected>Choose a muscle to select an exercise</option>
+              <!-- Other options will be dynamically added here -->
+          </select>
+            <button id="selectExerciseButton">Add exercise to workout</button>
+            <h3>Muscles working</h3>
+            <div id="selectedMusclesDiv"></div>
+
+            <input type="text" id="exerciseInput" list="exerciseSuggestions" placeholder="Enter exercise name">
+            <datalist id="exerciseSuggestions"></datalist>
+            <button id="getMuscleData"> Get Muscle Data</button>  
+            <h3>Exercises chosen</h3>
+            <div id="exerciseList"></div>
+            <button id="getMuscleEng"> Calculate Engagement</button> 
+            <button id="completeWorkoutButton">Complete Workout</button>
+
+            <button id="clearLocalStorageButton">Clear Local Storage</button>
 
 
+        </div>
+
+          <div class="addworkout" id="addworkout">
 
         <h3>Create your workout</h3>
         <button id="btn1"> Muscle selector</button>
         <button id="btn1"> Program selector</button>
         <button id="btn1"> Exercise library</button>
 
-        <h3>Muscles working</h3>
+        
         <button id="btn1"> Muscle selector</button>
         <h4>[Make a selection/change]</h4>
         <button id="btn1"> Selected Muscle divs and buttons created</button>
@@ -72,9 +101,12 @@
         <h3>*Post-Completion*</h3>
         <button id="btn1"> Preview recovery</button>
         <button id="btn1"> Save to profile(premium)</button>
-
+        
+      </div>
 
     </section>
+    
+
     </section>
     
 <footer class="footer">
