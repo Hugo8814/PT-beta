@@ -22,6 +22,20 @@ const timerDisplay = document.getElementById("testButton");
 
 const chestpaths = Array.from(document.querySelectorAll(".chest"));
 
+let timerCounter = 0; // Assume this is your timer counter
+
+// Save the counter value to localStorage every time it changes
+function updateCounter() {
+    localStorage.setItem('timerCounter', countdownTimer);
+    // Other operations related to the counter
+}
+
+// Example: Incrementing the counter
+function deincrementCounter() {
+  countdownTimer--;
+    updateCounter(); // Save the updated counter value to localStorage
+}
+
 chestpaths.forEach(function(path) {
   path.addEventListener("click", function() {
     const chestId = path.id;
@@ -53,6 +67,11 @@ chestpaths.forEach(function(path) {
       document.getElementById("plusButton").addEventListener("click", function(){
         //variable range calculation required
         countdownTimer += 10;
+        for (let i = 0; i < localStorage.length; i++) {
+          const key = localStorage.key(i);
+          const value = localStorage.getItem(key);
+          console.log(`Key: ${key}, Value: ${value}`);
+        }
         console.log("calculating new countdowntimer")
         document.getElementById("clickedTimer").innerHTML = "Time to Recovery: " + countdownTimer;
 
@@ -107,6 +126,7 @@ function startTimer() {
     const timer = setInterval(() => {
       testButton.textContent = countdownTimer;
       countdownTimer--;
+      updateCounter();
       chestpaths.forEach(function(path) {
         path.classList.add('z')
       })
@@ -148,4 +168,52 @@ function toggleBoxes() {
     maleavatarback.style.display = 'block';
   }
 };
+
+const availableMuscles = ["Biceps", "Triceps", "Quadriceps", "Hamstrings", "Calves", "Pectorals", "Abdominals", "Obliques", "Lats", "Deltoids", "Forearms", "Gluteus", "Lowerback", "Trapezius", "Hips"]; // Add all relevant muscle names here
+  
+function getClassForEngagement(engagementTime) {
+  if (engagementTime > 144) {
+      return 'color-72'; // Specific class for engagement above 144
+  }
+  const index = Math.min(Math.floor(engagementTime / 2), 71); // Adjusted for 72 colors, index 0-71
+  return `color-${index + 1}`; // Class names are color-1 to color-72
+}
+
+function updateSvgColors() {
+  availableMuscles.forEach(muscle => {
+      const svgElements = document.querySelectorAll(`.${muscle.toLowerCase()}`);
+      svgElements.forEach(svgElement => {
+          const state = loadState(muscle);
+          let className;
+          if (state && state.engagementTime > 0) {
+              className = getClassForEngagement(state.engagementTime);
+          } else if (state === null || state.engagementTime <= 0) {
+            className = 'color-0'; // Replace with the class name for ready muscle
+          }
+          // Remove all color classes and add the current one
+          for (let i = 1; i <= 72; i++) {
+              svgElement.classList.remove(`color-${i}`);
+          }
+          svgElement.classList.add(className);
+      });
+  });
+}
+updateSvgColors();
+setInterval(updateSvgColors, 60000);
+
+function loadState(muscle) {
+  const savedState = localStorage.getItem(`timerState_${muscle}`);
+  return savedState ? JSON.parse(savedState) : null;
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const clearButton = document.getElementById('clearLocalStorageButton');
+
+  clearButton.addEventListener('click', () => {
+      localStorage.clear();
+      console.log('Local storage cleared.');
+      updateSvgColors();
+      // Additional code to handle any updates needed after clearing local storage
+  });
+});
 
