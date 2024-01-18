@@ -7580,13 +7580,20 @@ console.log(exerciseNames);
 
 // Muscle Searcher
 
-  const selectedMuscles = []; // Replace with your selected muscles
+  let selectedMuscles = []; // Replace with your selected muscles
+
+  let searchMuscles = []; 
+
   const exerciseNamesForSelectedMuscles = findExercisesByMuscleNames(dataFromServer2, selectedMuscles);
   
   const availableMuscles = ["Biceps", "Triceps", "Quadriceps", "Hamstrings", "Calves", "Pectorals", "Abdominals", "Obliques", "Lats", "Deltoids", "Forearms", "Gluteus", "Lowerback", "Trapezius", "Hips"]; // Add all relevant muscle names here
   
   // const availableMuscles = ["Biceps", "Triceps", "Quadriceps", "Hamstrings", "Calves", "Pectorals", "Abdominals", "Obliques", "Lats", "Deltoids", "Forearms", "Gluteus", "Lowerback", "Trapezius", "Hips", "Chest", "Arms", "Legs", "Upper Body", "Lower Body", "Full Body"]; // Add all relevant muscle names here
   
+  let muscleExerciseMap = {}; // Global variable to track associations
+  
+
+
   function findExercisesByMuscleNames(exerciseData, selectedMuscles) {
     return exerciseData
         .filter(exercise => selectedMuscles.some(muscle => exercise[muscle] && exercise[muscle] > 25))
@@ -7626,40 +7633,57 @@ console.log(exerciseNames);
     }
   }
   
-  function updateExerciseDropdown(selectedMuscles) {
+  function updateExerciseDropdown() {
     const dropdown = document.getElementById('muscleDropdown');
-  
     dropdown.innerHTML = ''; // Clear existing options
-    const exercises = findExercisesByMuscleNames(dataFromServer2, selectedMuscles);
-    exercises.forEach(exercise => {
-        const option = document.createElement('option');
-        option.value = exercise;
-        option.textContent = exercise;
-        dropdown.appendChild(option);
-    });
+
+    if (searchMuscles.length > 0) {
+        const exercises = findExercisesByMuscleNames(dataFromServer2, searchMuscles);
+        exercises.forEach(exercise => {
+            const option = document.createElement('option');
+            option.value = exercise;
+            option.textContent = exercise;
+            dropdown.appendChild(option);
+        });
+    } else {
+        const defaultOption = document.createElement('option');
+        defaultOption.textContent = "Select a muscle to see exercises";
+        dropdown.appendChild(defaultOption);
+    }
+}
+  
+function updateSelectedMusclesDisplay() {
+  const musclesDiv = document.getElementById('selectedMusclesDiv');
+  musclesDiv.innerHTML = ''; // Clear existing content
+
+  const muscleEngagementTotals = calculateMuscleTotals();
+  const musclesToShow = Object.keys(muscleEngagementTotals).filter(muscle => muscleEngagementTotals[muscle] > 20);
+
+  // Create a single paragraph or div
+  const musclesParagraph = document.createElement('p');
+  musclesParagraph.textContent = musclesToShow.join(', '); // Join muscle names with comma
+  musclesDiv.appendChild(musclesParagraph);
+}
+  
+function addMusclesFromExercise(exerciseName) {
+  const exerciseData = getMuscleEngagement(exerciseName, dataFromServer2);
+  if (exerciseData) {
+      for (let muscle in exerciseData) {
+          if (muscle !== "Exercise Muscle Group" && typeof exerciseData[muscle] === 'number') {
+              if (!selectedMuscles.includes(muscle)) {
+                  selectedMuscles.push(muscle);
+              }
+              // Update muscleExerciseMap
+              if (!muscleExerciseMap[muscle]) {
+                  muscleExerciseMap[muscle] = new Set();
+              }
+              muscleExerciseMap[muscle].add(exerciseName);
+          }
+      }
   }
-  
-  function updateSelectedMusclesDisplay() {
-    const musclesDiv = document.getElementById('selectedMusclesDiv');
-  
-    musclesDiv.innerHTML = ''; // Clear existing content
-    selectedMuscles.forEach((muscle, index) => {
-        const muscleParagraph = document.createElement('p');
-        muscleParagraph.textContent = muscle;
-  
-        const removeButton = document.createElement('button');
-        removeButton.textContent = 'Remove';
-        removeButton.onclick = function() {
-            selectedMuscles.splice(index, 1); // Remove the muscle from the array
-            updateSelectedMusclesDisplay(); // Refresh the display
-            updateExerciseDropdown(selectedMuscles); // Update the exercises dropdown
-        };
-  
-        muscleParagraph.appendChild(removeButton);
-        musclesDiv.appendChild(muscleParagraph);
-    });
-  }
-  
+  updateSelectedMusclesDisplay();
+}
+
   // Event listener for the muscle input
   document.getElementById('muscleInput').addEventListener('input', function() {
       updateMuscleSuggestions(this.value);
@@ -7667,24 +7691,16 @@ console.log(exerciseNames);
   
   document.getElementById('addMuscleButton').addEventListener('click', function() {
     const muscleInputValue = document.getElementById('muscleInput').value;
-  
-    // Check if the muscle is in the availableMuscles array and not already in selectedMuscles
-    if (availableMuscles.includes(muscleInputValue) && !selectedMuscles.includes(muscleInputValue)) {
-        selectedMuscles.push(muscleInputValue);
-        console.log('Updated selected muscles:', selectedMuscles);
-  
-        // Clear the input field after adding
-        document.getElementById('muscleInput').value = '';
-  
-        // Update UI with exercises related to the selected muscles
-        updateExerciseDropdown(selectedMuscles);
-        updateSelectedMusclesDisplay();
+    if (availableMuscles.includes(muscleInputValue) && !searchMuscles.includes(muscleInputValue)) {
+        searchMuscles.push(muscleInputValue);
+        console.log('Muscle added for searching:', searchMuscles);
+        updateExerciseDropdown(); // Update the dropdown with new search results
     } else if (!availableMuscles.includes(muscleInputValue)) {
         console.log(`Muscle '${muscleInputValue}' is not a valid entry.`);
     } else {
-        console.log(`Muscle '${muscleInputValue}' is already in the list.`);
+        console.log(`Muscle '${muscleInputValue}' is already in the search list.`);
     }
-  });
+});
   
   document.getElementById('selectExerciseButton').addEventListener('click', function() {
     const dropdown = document.getElementById('muscleDropdown');
@@ -7701,6 +7717,9 @@ console.log(exerciseNames);
     } else {
         console.log(`Exercise '${selectedExerciseName}' is already in the workout.`);
     }
+    addMusclesFromExercise(dropdown.value);
+    searchMuscles = [];
+    updateExerciseDropdown();
   });
 
 // Recovery calculator
@@ -7736,8 +7755,6 @@ console.log(exerciseNames);
   function updateExerciseList() {
   const listContainer = document.getElementById('exerciseList');
   listContainer.innerHTML = ''; // Clear the existing list
-    
-
   // Create a new list based on the current workout array
   workout.forEach((exercise, index) => {
       const listItem = document.createElement('div');
@@ -7759,10 +7776,24 @@ console.log(exerciseNames);
   }
 
   function removeExercise(index) {
-  // Remove exercise from the workout array
-  workout.splice(index, 1);
-  updateExerciseList(); // Update the list in the HTML
-  }
+    const exerciseToRemove = workout[index]["Exercise Muscle Group"];
+    workout.splice(index, 1); // Remove exercise from the workout array
+    updateExerciseList(); // Update the list in the HTML
+
+    // Remove muscles associated with this exercise if they are not part of any other exercises
+    for (let muscle in muscleExerciseMap) {
+        muscleExerciseMap[muscle].delete(exerciseToRemove);
+        if (muscleExerciseMap[muscle].size === 0) {
+            // Remove muscle from selectedMuscles array
+            const muscleIndex = selectedMuscles.indexOf(muscle);
+            if (muscleIndex > -1) {
+                selectedMuscles.splice(muscleIndex, 1);
+            }
+            delete muscleExerciseMap[muscle]; // Remove entry from map
+        }
+    }
+    updateSelectedMusclesDisplay(); // Update muscles display
+}
 
   // Initially selected muscle data
   let mySelectedMuscleData = {};
@@ -7819,7 +7850,13 @@ console.log(exerciseNames);
   }
 
   // Event listeners
-  document.getElementById('getMuscleData').addEventListener('click', updateMuscleData);
+  document.getElementById('getMuscleData').addEventListener('click', function() {
+    updateMuscleData();
+    const exerciseName = document.getElementById('exerciseInput').value;
+    addMusclesFromExercise(exerciseName);
+    searchMuscles = [];
+    updateExerciseDropdown();
+});
 
   document.getElementById('getMuscleEng').addEventListener('click', function(){
   let workoutTotals = calculateMuscleTotals();
@@ -7868,8 +7905,7 @@ function startMuscleTimers() {
   });
 }
 
-function startEngagementTimer(muscle, totalEngagementTime) {
-  let hoursPassed = 0;
+function startEngagementTimer(muscle, totalEngagementTime, hoursPassed = 0) {
   saveState(muscle, { engagementTime: totalEngagementTime, hoursPassed }); // Save the initial state
 
   function updateTimer() {
@@ -7877,14 +7913,12 @@ function startEngagementTimer(muscle, totalEngagementTime) {
       let rate = getRate(hoursPassed);
       totalEngagementTime -= rate;
 
-      // Check if the total engagement time is less than or equal to zero
       if (totalEngagementTime <= 0) {
           clearInterval(muscleTimers[muscle]);
           startRecoveryTimer(muscle); // Start the recovery timer for the muscle
       } else {
           saveState(muscle, { engagementTime: totalEngagementTime, hoursPassed });
 
-          // Reset the timer if 72 hours have passed and there's still engagement time left
           if (hoursPassed >= 72) {
               hoursPassed = 0; // Reset hoursPassed for the new cycle
               totalEngagementTime = loadState(muscle).engagementTime; // Reload the remaining engagement time
@@ -7893,7 +7927,7 @@ function startEngagementTimer(muscle, totalEngagementTime) {
   }
 
   stopTimer(muscle);
-  muscleTimers[muscle] = setInterval(updateTimer, 3600000); // Update every hour
+  muscleTimers[muscle] = setInterval(updateTimer, 360000); // Update every second (for testing)
 }
 
 // Calculate rate based on hours passed
@@ -7945,20 +7979,6 @@ function loadState(muscle) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  const completeWorkoutButton = document.getElementById('completeWorkoutButton');
-
-  const completeWorkout = () => {
-      console.log("Complete Workout button clicked."); // Debugging log
-      console.log("Workout Array:", workout); // Debugging log to check the workout array
-      startMuscleTimers(); 
-      completeWorkoutButton.removeEventListener('click', completeWorkout);
-  };
-
-  completeWorkoutButton && completeWorkoutButton.addEventListener('click', completeWorkout);
-  startMuscleTimers(); // Initialize timers on page load
-});
-
-document.addEventListener('DOMContentLoaded', () => {
   const clearButton = document.getElementById('clearLocalStorageButton');
 
   clearButton.addEventListener('click', () => {
@@ -7968,3 +7988,161 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+function continueEngagementTimer(muscle) {
+  const savedState = loadState(muscle);
+  if (savedState) {
+      startEngagementTimer(muscle, savedState.engagementTime, savedState.hoursPassed);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  availableMuscles.forEach(continueEngagementTimer);
+});
+
+// WORKOUT LOGGER
+
+function saveWorkoutToLocalStorage(workout) {
+  const currentDateTime = new Date();
+  const formattedDate = currentDateTime.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: '2-digit' });
+  const formattedTime = currentDateTime.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', hour12: false });
+
+  const workoutWithDateTime = {
+      dateTime: `${formattedDate} ${formattedTime}`,
+      exercises: workout
+  };
+
+  const workouts = JSON.parse(localStorage.getItem('workouts')) || [];
+  workouts.push(workoutWithDateTime);
+  localStorage.setItem('workouts', JSON.stringify(workouts));
+  console.log('Workout saved to local storage:', workoutWithDateTime);
+
+  console.log('Saving workout:', workoutWithDateTime);
+localStorage.setItem('workouts', JSON.stringify(workouts));
+}
+
+function createWorkoutDivs() {
+  const workouts = JSON.parse(localStorage.getItem('workouts')) || [];
+  const workoutsContainer = document.getElementById('workoutsContainer');
+  workoutsContainer.innerHTML = '';
+
+  workouts.forEach((workoutWithDateTime, index) => {
+      const workoutDiv = document.createElement('div');
+      workoutDiv.id = 'workout-' + index;
+      workoutDiv.className = 'workout-div';
+
+      const title = document.createElement('h3');
+      title.textContent = `Workout ${index + 1} (${workoutWithDateTime.dateTime})`;
+      workoutDiv.appendChild(title);
+
+      // Create a button to toggle exercise details
+      const toggleButton = document.createElement('button');
+      toggleButton.textContent = 'Show/Hide Details';
+      toggleButton.onclick = function() {
+          const exercisesDiv = document.getElementById('exercises-' + index);
+          if (exercisesDiv.style.display === 'none' || exercisesDiv.style.display === '') {
+              exercisesDiv.style.display = 'block';
+          } else {
+              exercisesDiv.style.display = 'none';
+          }
+      };
+      workoutDiv.appendChild(toggleButton);
+
+      // Create a container for exercise details
+      const exercisesDiv = document.createElement('div');
+      exercisesDiv.id = 'exercises-' + index;
+      exercisesDiv.style.display = 'none'; // Hide by default
+
+      workoutWithDateTime.exercises.forEach(exercise => {
+        const exerciseDiv = document.createElement('div');
+        exerciseDiv.className = 'exercise-div';
+
+        const exerciseName = document.createElement('p');
+        exerciseName.textContent = `Exercise: ${exercise["Exercise Muscle Group"]}`;
+        exerciseDiv.appendChild(exerciseName);
+
+        // Equipment used
+        const equipmentUsed = Object.keys(exercise).filter(key => exercise[key] === 'y' && !['standing', 'seated', 'bench'].includes(key)).join(', ');
+        if (equipmentUsed.length > 0) {
+            const equipmentText = document.createElement('p');
+            equipmentText.textContent = `Equipment Used: ${equipmentUsed}`;
+            exerciseDiv.appendChild(equipmentText);
+        }
+
+        // Position
+        const position = ['standing', 'seated', 'bench'].find(pos => exercise[pos] === 'y');
+        if (position) {
+            const positionText = document.createElement('p');
+            positionText.textContent = `Position: ${position}`;
+            exerciseDiv.appendChild(positionText);
+        }
+
+        // Style
+        const styleText = document.createElement('p');
+        styleText.textContent = `Style: ${exercise["style"]}`;
+        exerciseDiv.appendChild(styleText);
+
+        // Muscles engaged
+        const muscleKeys = ['Calves', 'Quadriceps', 'Hamstrings', 'Gluteus', 'Hips', 'Lowerback', 'Abdominals', 'Obliques', 'Lats', 'Trapezius', 'Pectorals', 'Triceps', 'Deltoids', 'Biceps', 'Forearms']; // Add all possible muscle keys here
+        const musclesEngaged = muscleKeys.filter(muscle => exercise[muscle] && exercise[muscle] >= 10).map(muscle => `${muscle}`).join(', ');
+        if (musclesEngaged.length > 0) {
+            const muscleText = document.createElement('p');
+            muscleText.textContent = `Muscles Engaged: ${musclesEngaged}`;
+            exerciseDiv.appendChild(muscleText);
+        }
+
+        exercisesDiv.appendChild(exerciseDiv);
+      });
+
+      workoutDiv.appendChild(exercisesDiv);
+      workoutsContainer.appendChild(workoutDiv);
+  });
+}
+
+function clearCurrentWorkout() {
+  workout = []; // Clear the workout array
+  selectedMuscles = [];
+  // Clear any other selections you might have (e.g., input fields, dropdowns)
+  const selectedMusclesContainer = document.getElementById('selectedMusclesDiv');
+    if (selectedMusclesContainer) {
+        selectedMusclesContainer.innerHTML = '';
+    }
+
+    // Clear the UI elements for exercise list
+    const exerciseListContainer = document.getElementById('exerciseList');
+    if (exerciseListContainer) {
+        exerciseListContainer.innerHTML = '';
+    }
+  console.log('Current workout cleared for new entry');
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const completeWorkoutButton = document.getElementById('completeWorkoutButton');
+  createWorkoutDivs();
+
+  completeWorkoutButton.addEventListener('click', () => {
+    if (workout.length === 0) {
+      alert("No workout has been logged. Select muscles and exercises to create a workout that suits you!"); // You can use alert or any other method to display the message
+      return; // Stop the function from proceeding further
+  }
+      console.log("Complete Workout button clicked.");
+      saveWorkoutToLocalStorage(workout);
+      createWorkoutDivs(); // Update the divs with the new workout
+      startMuscleTimers();
+      clearCurrentWorkout();// Proceed with muscle engagement as before
+  });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  const clearButton = document.getElementById('clearLocalStorageWorkouts');
+
+  clearButton.addEventListener('click', () => {
+      localStorage.removeItem('workouts'); // This will only clear the workouts data
+      console.log('Workouts data cleared from local storage.');
+      // Additional code to handle updates after clearing workouts data from local storage
+      // For example, you might want to clear the displayed workouts on the page
+      const workoutsContainer = document.getElementById('workoutsContainer');
+      if (workoutsContainer) {
+          workoutsContainer.innerHTML = ''; // Clear the displayed workouts
+      }
+  });
+});

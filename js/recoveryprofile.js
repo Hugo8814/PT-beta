@@ -1,40 +1,13 @@
 let mainLogo = document.getElementById("navLogo");
-console.log(navLogo);
 
 mainLogo.addEventListener("click", function(){
-console.log("clicked logo")
 window.location.href=('../')
 })
 
-
-
-
-// const minusButton = document.getElementById("minusButton");
-
-let countdownTimer = 60;
 let baseChestSelected = false;
 let musclesSelected = [];
 
-let clickedTimer = document.getElementById("clickedTimer").innerHTML;
-let buttonMap = {};
-
-const timerDisplay = document.getElementById("testButton");
-
 const chestpaths = Array.from(document.querySelectorAll(".chest"));
-
-let timerCounter = 0; // Assume this is your timer counter
-
-// Save the counter value to localStorage every time it changes
-function updateCounter() {
-    localStorage.setItem('timerCounter', countdownTimer);
-    // Other operations related to the counter
-}
-
-// Example: Incrementing the counter
-function deincrementCounter() {
-  countdownTimer--;
-    updateCounter(); // Save the updated counter value to localStorage
-}
 
 chestpaths.forEach(function(path) {
   path.addEventListener("click", function() {
@@ -58,24 +31,24 @@ chestpaths.forEach(function(path) {
       muscleSelector.appendChild(plusButton);
 
       // event listeners for new buttons
-      document.getElementById("minusButton").addEventListener("click", function(){
-        // variable range calculation required
-        countdownTimer -= 10;
-        document.getElementById("clickedTimer").innerHTML = "Time to Recovery: " + countdownTimer;
+      // document.getElementById("minusButton").addEventListener("click", function(){
+      //   // variable range calculation required
+      //   countdownTimer -= 10;
+      //   document.getElementById("clickedTimer").innerHTML = "Time to Recovery: " + countdownTimer;
 
-      })
-      document.getElementById("plusButton").addEventListener("click", function(){
-        //variable range calculation required
-        countdownTimer += 10;
-        for (let i = 0; i < localStorage.length; i++) {
-          const key = localStorage.key(i);
-          const value = localStorage.getItem(key);
-          console.log(`Key: ${key}, Value: ${value}`);
-        }
-        console.log("calculating new countdowntimer")
-        document.getElementById("clickedTimer").innerHTML = "Time to Recovery: " + countdownTimer;
+      // })
+      // document.getElementById("plusButton").addEventListener("click", function(){
+      //   //variable range calculation required
+      //   countdownTimer += 10;
+      //   for (let i = 0; i < localStorage.length; i++) {
+      //     const key = localStorage.key(i);
+      //     const value = localStorage.getItem(key);
+      //     console.log(`Key: ${key}, Value: ${value}`);
+      //   }
+      //   console.log("calculating new countdowntimer")
+      //   document.getElementById("clickedTimer").innerHTML = "Time to Recovery: " + countdownTimer;
 
-      })
+      // })
 
 
       // Store button elements associated with this chest
@@ -91,11 +64,9 @@ chestpaths.forEach(function(path) {
       // Multiple events
       if (baseChestSelected) {
         chestPath.classList.remove("clicked");
-        document.getElementById("clickedTimer").textContent = clickedTimer;
         removeAllButtons(chestId);
       } else {
         chestPath.classList.add("clicked");
-        document.getElementById("clickedTimer").innerHTML = "Time to Recovery: " + countdownTimer;
       }
     });
     baseChestSelected = !baseChestSelected;
@@ -118,44 +89,6 @@ function removeAllButtons() {
   }
 };
 
-timerDisplay.addEventListener("click", function(){
-    startTimer();
-});
-
-function startTimer() {       
-    const timer = setInterval(() => {
-      testButton.textContent = countdownTimer;
-      countdownTimer--;
-      updateCounter();
-      chestpaths.forEach(function(path) {
-        path.classList.add('z')
-      })
-      if (countdownTimer <= 60 && countdownTimer >= 58) {
-        chestpaths.forEach(function(path) {
-          path.classList.add('y');
-        });
-      } else if (countdownTimer <= 58 && countdownTimer >= 56) {
-        chestpaths.forEach(function(path) {
-          path.classList.remove('y');
-          path.classList.add('x');
-        });
-      } else if (countdownTimer <= 56 && countdownTimer >= 54) {
-        // Logic for countdownTimer between 56 and 54
-      } else if (countdownTimer <= 5 && countdownTimer > 0) {
-        // Logic for countdownTimer less than or equal to 5
-      }
-      if (countdownTimer <= 0) {
-        clearInterval(timer);
-        chestpaths.forEach(function(path) {
-          path.classList.remove('z')
-        path.classList.remove('x')
-        })
-        testButton.textContent = "Time's up!";
-        // You can perform additional actions when the timer ends
-      }
-    }, 1000);
-  };
-
 const viewSwapper = document.getElementById("viewSwap");
 viewSwap.addEventListener("click", toggleBoxes);
 
@@ -170,7 +103,9 @@ function toggleBoxes() {
 };
 
 const availableMuscles = ["Biceps", "Triceps", "Quadriceps", "Hamstrings", "Calves", "Pectorals", "Abdominals", "Obliques", "Lats", "Deltoids", "Forearms", "Gluteus", "Lowerback", "Trapezius", "Hips"]; // Add all relevant muscle names here
-  
+
+let buttonMap = {};  
+
 function getClassForEngagement(engagementTime) {
   if (engagementTime > 144) {
       return 'color-72'; // Specific class for engagement above 144
@@ -188,7 +123,7 @@ function updateSvgColors() {
           if (state && state.engagementTime > 0) {
               className = getClassForEngagement(state.engagementTime);
           } else if (state === null || state.engagementTime <= 0) {
-            className = 'color-0'; // Replace with the class name for ready muscle
+            className = 'color-1'; // Replace with the class name for ready muscle
           }
           // Remove all color classes and add the current one
           for (let i = 1; i <= 72; i++) {
@@ -199,7 +134,7 @@ function updateSvgColors() {
   });
 }
 updateSvgColors();
-setInterval(updateSvgColors, 60000);
+setInterval(updateSvgColors, 360000);
 
 function loadState(muscle) {
   const savedState = localStorage.getItem(`timerState_${muscle}`);
@@ -217,3 +152,126 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+// RECOVERY PROFILE TIMER
+
+let muscleTimers = {};
+
+// Calculate muscle totals from the workout array
+function calculateMuscleTotals() {
+    let muscleTotals = {};
+    workout.forEach(exercise => {
+        for (let muscle in exercise) {
+            if (muscle === "Exercise Muscle Group" || typeof exercise[muscle] !== 'number') {
+                continue;
+            }
+            muscleTotals[muscle] = (muscleTotals[muscle] || 0) + exercise[muscle];
+        }
+    });
+    return muscleTotals;
+}
+
+// Start independent timers for each muscle
+function startMuscleTimers() {
+  let muscleEngagements = calculateMuscleTotals();
+  console.log("Muscle Engagements:", muscleEngagements);
+
+  Object.keys(muscleEngagements).forEach(muscle => {
+      let savedState = loadState(muscle);
+      let newEngagementTime = muscleEngagements[muscle];
+      if (savedState) {
+          // Accumulate the new engagement time with the saved one
+          newEngagementTime += savedState.engagementTime;
+      }
+      startEngagementTimer(muscle, newEngagementTime);
+  });
+}
+
+function startEngagementTimer(muscle, totalEngagementTime, hoursPassed = 0) {
+  saveState(muscle, { engagementTime: totalEngagementTime, hoursPassed }); // Save the initial state
+
+  function updateTimer() {
+    hoursPassed++;
+    let rate = getRate(hoursPassed);
+    totalEngagementTime -= rate;
+
+    if (totalEngagementTime <= 0) {
+        totalEngagementTime = 0; // Reset to 0 if it goes below zero
+        clearInterval(muscleTimers[muscle]);
+        startRecoveryTimer(muscle); // Start the recovery timer for the muscle
+    }
+
+    saveState(muscle, { engagementTime: totalEngagementTime, hoursPassed });
+
+    if (hoursPassed >= 72) {
+        hoursPassed = 0; // Reset hoursPassed for the new cycle
+        totalEngagementTime = loadState(muscle).engagementTime; // Reload the remaining engagement time
+    }
+}
+
+  stopTimer(muscle);
+  muscleTimers[muscle] = setInterval(updateTimer, 3600000); // Update every second (for testing)
+}
+
+// Calculate rate based on hours passed
+function getRate(hours) {
+    if (hours <= 12) return 3.6;
+    else if (hours <= 24) return 2.4;
+    else if (hours <= 36) return 2.6;
+    else if (hours <= 48) return 1.4;
+    else if (hours <= 60) return 1.6;
+    else return 0.4;
+}
+
+// Start recovery timer for a specific muscle
+function startRecoveryTimer(muscle) {
+    let recoveryHours = 7 * 24; // 7 days
+
+    function updateRecovery() {
+        recoveryHours--;
+        if (recoveryHours <= 0) {
+            clearInterval(muscleTimers[muscle]);
+            console.log(`${muscle} is ready to be worked again`);
+        } else {
+            console.log(`Recovery time remaining for ${muscle}: ${recoveryHours} hours`);
+        }
+    }
+
+    muscleTimers[muscle] = setInterval(updateRecovery, 3600000); // Update every hour
+}
+
+// Stop timer for a specific muscle
+function stopTimer(muscle) {
+    if (muscleTimers[muscle]) {
+        clearInterval(muscleTimers[muscle]);
+    }
+}
+
+function saveState(muscle, state) {
+  try {
+      localStorage.setItem(`timerState_${muscle}`, JSON.stringify(state));
+      console.log(`Saved state for ${muscle}:`, state);
+  } catch (error) {
+      console.error(`Error saving state for ${muscle}:`, error);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const clearButton = document.getElementById('clearLocalStorageButton');
+
+  clearButton.addEventListener('click', () => {
+      localStorage.clear();
+      console.log('Local storage cleared.');
+      // Additional code to handle any updates needed after clearing local storage
+  });
+});
+
+function continueEngagementTimer(muscle) {
+  const savedState = loadState(muscle);
+  if (savedState) {
+      startEngagementTimer(muscle, savedState.engagementTime, savedState.hoursPassed);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  availableMuscles.forEach(continueEngagementTimer);
+});
